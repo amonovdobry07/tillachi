@@ -1,0 +1,141 @@
+.hero{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bg{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    hsl(0 0% 4% / 0.70),
+    hsl(0 0% 4% / 0.50),
+    hsl(0 0% 4% / 1)
+  );
+}
+
+.leftLine,
+.rightLine{
+  position: absolute;
+  top: 50%;
+  height: 192px;
+  width: 1px;
+  opacity: 0.4;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  transform: translateY(-50%);
+  display: none;
+}
+
+.leftLine{ left: 32px; }
+.rightLine{ right: 32px; }
+
+.content{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 880px;
+}
+
+.kicker{
+  margin: 0 0 24px;
+  font-size: 12px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.title{
+  margin: 0 0 18px;
+  font-size: clamp(44px, 8vw, 102px);
+  font-weight: 700;
+  line-height: 1.04;
+}
+
+.italic{ font-style: italic; }
+
+.subtitle{
+  margin: 0 auto 40px;
+  max-width: 560px;
+  color: var(--muted-fg);
+  font-size: clamp(18px, 2.2vw, 26px);
+  line-height: 1.7;
+}
+
+.actions{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.primaryBtn,
+.secondaryBtn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 0;
+  transition: opacity 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.primaryBtn{
+  color: hsl(0 0% 4%);
+  background: var(--gradient-gold);
+}
+
+.primaryBtn:hover{
+  opacity: 0.92;
+  box-shadow: 0 0 30px hsl(43 62% 52% / 0.4);
+}
+
+.secondaryBtn{
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  background: transparent;
+}
+
+.secondaryBtn:hover{
+  border-color: var(--gold);
+  background: hsl(43 62% 52% / 0.05);
+}
+
+.scroll{
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: hsl(43 62% 52% / 0.55);
+  transition: color 0.2s ease;
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+.scroll:hover{ color: var(--gold); }
+
+@media (min-width: 640px){
+  .actions{ flex-direction: row; }
+}
+
+@media (min-width: 1024px){
+  .leftLine, .rightLine{ display: block; }
+}

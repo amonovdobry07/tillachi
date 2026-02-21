@@ -1,0 +1,187 @@
+/* Umumiy fon hissi: qora + yengil gradient */
+.head{
+  padding: 18px 0 26px;
+}
+
+.kickerRow{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.kickerLine{
+  width: 56px;
+  height: 2px;
+  background: var(--gold, #c5a46d);
+  opacity: .95;
+}
+
+.kicker{
+  letter-spacing: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgba(183, 133, 48, 0.95);
+}
+
+.h2{
+  margin: 0 0 10px;
+  line-height: 1.05;
+  font-size: clamp(44px, 5.2vw, 86px);
+  font-family: var(--display, "Playfair Display", Georgia, serif);
+}
+
+.h2Light{
+  color: rgba(255,255,255,.92);
+  font-weight: 650;
+}
+
+.h2Gold{
+  color: var(--gold, #c5a46d);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.lead{
+  max-width: 820px;
+  margin: 0;
+  color: rgba(255,255,255,.62);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* Services list */
+.list{
+  display: grid;
+  gap: 22px;
+  margin-top: 18px;
+}
+
+/* Split card: rasmda ko'ringandek */
+.splitCard{
+  display: grid;
+  grid-template-columns: 1fr;
+  background: rgba(12,12,12,.86);
+  border: 1px solid rgba(197,164,109,.22);
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0,0,0,.45);
+}
+
+.splitCard:hover{
+  border-color: rgba(197,164,109,.42);
+  box-shadow: 0 0 60px rgba(197,164,109,.10), 0 0 40px rgba(0,0,0,.55);
+}
+
+/* Media */
+.media{
+  position: relative;
+  min-height: 260px;
+  background: #0b0b0b;
+}
+
+.video, .image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.01);
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.mediaShade{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(500px 220px at 25% 20%, rgba(197,164,109,.12), transparent 70%),
+    linear-gradient(90deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
+  pointer-events: none;
+}
+
+/* Content */
+.content{
+  padding: 34px 34px 30px;
+  position: relative;
+}
+
+.badge{
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(197,164,109,.55);
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+}
+
+.badgeIcon{
+  width: 22px;
+  height: 22px;
+  display: block;
+  background: var(--gold, #c5a46d);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+/* Ikonkalar (svg mask) */
+.badgeIcon[data-icon="diamond"]{
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6.5 3h11l4 6-9.5 12L2.5 9l4-6Zm2.1 2L6 8h4l1.8-3H8.6Zm6.8 0H12.2L10.4 8h3.2L15.4 5ZM18 8l-2.6-3L13.6 8H18ZM6.3 10l5.7 8.2L17.7 10H6.3Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6.5 3h11l4 6-9.5 12L2.5 9l4-6Zm2.1 2L6 8h4l1.8-3H8.6Zm6.8 0H12.2L10.4 8h3.2L15.4 5ZM18 8l-2.6-3L13.6 8H18ZM6.3 10l5.7 8.2L17.7 10H6.3Z'/%3E%3C/svg%3E");
+}
+
+.title{
+  margin: 0 0 10px;
+  font-size: clamp(30px, 3vw, 44px);
+  color: rgba(198, 146, 56, 0.95);
+  font-weight: 750;
+}
+
+.goldUnderline{
+  width: 62px;
+  height: 2px;
+  background: var(--gold, #c5a46d);
+  opacity: .9;
+  margin: 10px 0 18px;
+}
+
+.desc{
+  margin: 0 0 18px;
+  color: rgba(255,255,255,.64);
+  line-height: 1.85;
+  font-size: 16px;
+}
+
+.bullets{
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.bullet{
+  color: rgba(255,255,255,.60);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bullet::before{
+  content: "✦";
+  color: var(--gold, #c5a46d);
+  font-size: 14px;
+  line-height: 1;
+  opacity: .95;
+}
+
+/* Desktop: chap media, o'ng kontent */
+@media (min-width: 980px){
+  .splitCard{
+    grid-template-columns: 1.15fr 1fr;
+    min-height: 420px;
+  }
+  .media{ min-height: 420px; }
+  .content{ padding: 56px 56px 44px; }
+}

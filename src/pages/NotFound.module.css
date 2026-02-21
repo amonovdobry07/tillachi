@@ -1,0 +1,3 @@
+.box{ max-width: 560px; margin: 0 auto; background: var(--card); border: 1px solid var(--border); padding: 28px; text-align: center; }
+.text{ margin: 0 0 16px; color: var(--muted-fg); line-height: 1.7; }
+.btn{ display:inline-flex; padding: 14px 20px; background: var(--gradient-gold); color: hsl(0 0% 4%); letter-spacing: 0.22em; text-transform: uppercase; font-size: 12px; }

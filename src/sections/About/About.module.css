@@ -1,0 +1,114 @@
+.about{
+  padding: 96px 0 120px;
+}
+
+.labelRow{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 64px;
+}
+
+.smallLine{ width: 48px; height: 1px; background: var(--gradient-gold); }
+
+.label{
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.imageWrap{ position: relative; }
+
+.imageFrame{ position: relative; overflow: hidden; }
+
+.image{
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(15%);
+  transition: filter 0.7s ease;
+}
+
+.imageFrame:hover .image{ filter: grayscale(0%); }
+
+.frameBorder{
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--gold-dim);
+  pointer-events: none;
+}
+
+.cornerBox{
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  right: -16px;
+  bottom: -16px;
+  border: 1px solid hsl(43 62% 52% / 0.30);
+  pointer-events: none;
+  display: none;
+}
+
+.badge{
+  position: absolute;
+  left: 32px;
+  bottom: -24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 16px 22px;
+  display: none;
+}
+
+.badgeValue{ margin: 0; font-size: 32px; color: var(--gold); font-weight: 700; }
+.badgeLabel{ margin: 6px 0 0; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-fg); }
+
+.text{ max-width: 620px; }
+
+.heading{
+  margin: 0 0 18px;
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.italic{ font-style: italic; }
+
+.bigLine{ width: 64px; margin: 0 0 28px; }
+
+.pLead{
+  margin: 0 0 16px;
+  font-size: 22px;
+  line-height: 1.65;
+  color: var(--muted-fg);
+}
+
+.p{
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted-fg);
+}
+
+.stats{ display: flex; gap: 44px; flex-wrap: wrap; margin-top: 28px; }
+
+.statValue{ margin: 0; font-size: 24px; color: var(--gold); font-weight: 700; }
+
+.statLabel{ margin: 6px 0 0; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-fg); }
+
+@media (min-width: 768px){
+  .badge{ display: block; }
+  .cornerBox{ display: block; }
+}
+
+@media (min-width: 1024px){
+  .grid{ grid-template-columns: 1fr 1fr; gap: 64px; }
+}

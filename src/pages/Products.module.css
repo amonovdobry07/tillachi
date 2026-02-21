@@ -1,0 +1,282 @@
+/* hammasi faqat shu component ichida ishlaydi */
+.pWrap{
+  background: var(--bg);
+}
+
+/* o‘zingning lokal “container”ing */
+.pInner{
+  width: min(1440px, 100%);
+  margin: 0 auto;
+}
+
+/* HERO */
+/* HERO fon + premium glow */
+.hero{
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.heroTop{
+  padding: 56px 0 18px;
+  max-width: 860px;
+}
+
+/* kicker */
+.kickerRow{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.kickerLine{
+  width: 64px;
+  height: 1px;
+  background: rgba(197,164,109,.92);
+  opacity: .95;
+}
+
+.kicker{
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: .30em;
+  text-transform: uppercase;
+  color: rgba(197, 145, 54, 0.95);
+}
+
+/* asosiy sarlavha: serif + katta */
+.h1{
+  margin: 0 0 14px;
+  font-size: clamp(52px, 6vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: rgba(245,245,245,.98);
+
+  /* Agar globalda fontDisplay bo‘lsa, shu ishlaydi */
+  font-family: var(--display-font, "Playfair Display", Georgia, serif);
+  font-weight: 600;
+}
+
+.italicGold{
+  color: rgba(200, 140, 36, 0.98);
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* description */
+.sub{
+  margin: 0;
+  max-width: 720px;
+  color: rgba(255,255,255,.62);
+  line-height: 1.85;
+  font-size: 16px;
+
+  font-family: var(--text-font, system-ui, -apple-system, Segoe UI, Roboto, Arial);
+}
+
+/* tabs qatori */
+.controls{
+  padding: 26px 0 44px;
+}
+
+.tabs{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tab{
+  border: 1px solid rgba(197,164,109,.24);
+  background: rgba(0,0,0,.22);
+  color: rgba(255,255,255,.60);
+
+  padding: 12px 22px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+
+  transition: border-color .25s ease, color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.tab:hover{
+  border-color: rgba(197,164,109,.55);
+  color: rgba(255,255,255,.92);
+  transform: translateY(-1px);
+}
+
+.tabActive{
+  border-color: rgba(197,164,109,.90);
+  background: rgba(230, 160, 40, 0.592);
+  color: rgba(255, 255, 255, 0.98);
+}
+.download{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid rgba(197,164,109,.40);
+  color: var(--gold);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-decoration: none;
+  background: rgba(0,0,0,.22);
+  transition: transform .25s ease, border-color .25s ease, background .25s ease;
+}
+
+.download:hover{
+  transform: translateY(-1px);
+  border-color: rgba(176, 127, 42, 0.918);
+  background: rgba(0,0,0,.30);
+}
+
+.dlIcon{
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(197,164,109,.35);
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* SECTION */
+.section{
+  padding: 36px 0 72px;
+}
+
+/* GRID */
+.grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px){
+  .grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1100px){
+  .grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* CARD */
+.card{
+  border: 1px solid rgba(197,164,109,.22);
+  background: rgba(0,0,0,.22);
+  overflow: hidden;
+  transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(197,164,109,.55);
+  box-shadow: 0 28px 60px rgba(0,0,0,.55);
+}
+
+/* MEDIA */
+.media{
+  position: relative;
+  aspect-ratio: 4 / 4.7;
+  overflow: hidden;
+  background:
+    radial-gradient(700px 380px at 50% 10%, rgba(255,255,255,.06), transparent 55%),
+    rgba(0,0,0,.45);
+}
+
+.img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+  transition: transform .8s ease, filter .8s ease;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.card:hover .img{
+  transform: scale(1.09);
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.frame{
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(197,164,109,.28);
+  pointer-events: none;
+}
+
+.glow{
+  position: absolute;
+  inset: -120px;
+  pointer-events: none;
+  background:
+    radial-gradient(320px 240px at 12% 10%, rgba(197,164,109,.16), transparent 60%),
+    radial-gradient(320px 240px at 88% 85%, rgba(197,164,109,.12), transparent 60%);
+  opacity: .85;
+}
+
+.tag{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 10px 12px;
+  border: 1px solid rgba(197,164,109,.40);
+  background: rgba(0,0,0,.42);
+  color: rgba(197,164,109,.98);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+/* BODY */
+.body{
+  padding: 22px 22px 26px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.04), transparent 60%);
+}
+
+.cat{
+  margin: 0 0 10px;
+  color: rgba(255,255,255,.58);
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.title{
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.15;
+  color: rgba(255,255,255,.96);
+}
+
+.desc{
+  margin: 0 0 18px;
+  color: rgba(255,255,255,.62);
+  line-height: 1.75;
+}
+
+.more{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(197,164,109,.95);
+  text-decoration: none;
+  transition: color .25s ease, transform .25s ease;
+}
+
+.more:hover{
+  color: rgba(255,255,255,.92);
+  transform: translateX(2px);
+}
+
+.arrow{
+  transition: transform .25s ease;
+}
+
+.more:hover .arrow{
+  transform: translateX(2px);
+}

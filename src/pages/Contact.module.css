@@ -1,0 +1,329 @@
+.section{
+  width: min(1180px, 92%);
+  margin: 0 auto;
+  padding: 34px 0 70px;
+}
+
+/* HERO */
+.hero{
+  padding: 10px 0 34px;
+  max-width: 640px;
+}
+
+.kicker{
+  margin: 0 0 14px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(202,164,77,.95);
+  position: relative;
+  padding-left: 56px;
+}
+
+.kicker::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  width: 42px;
+  height: 1px;
+  background: rgba(202,164,77,.7);
+  transform: translateY(-50%);
+}
+
+.h1{
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(44px, 5vw, 66px);
+  line-height: 1.02;
+  color: rgba(245,245,245,.95);
+}
+
+.h1Accent{
+  color: rgba(202,164,77, 1);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.lead{
+  margin: 14px 0 0;
+  color: rgba(220,220,220,.75);
+  line-height: 1.7;
+  font-size: 15px;
+  max-width: 56ch;
+}
+
+/* GRID */
+/* PAGE WRAP */
+.section{
+  width: 100%;
+  padding: 48px 0 86px;
+}
+
+/* reference’dagi kabi sahifa foniga “qimmat” chuqurlik */
+.shell{
+  width: min(1440px);
+  margin: 0 auto;
+  position: relative;
+  padding: 46px 0 70px;
+  box-shadow: 0 40px 120px rgba(0,0,0,.65);
+}
+
+/* GRID LAYOUT */
+.grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 34px;
+  padding: 0 34px;
+}
+
+.left{
+  display: grid;
+  gap: 22px;
+  align-content: start;
+}
+
+.right{
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* LEFT CARD (CONTACT INFO) */
+.infoCard{
+  background: linear-gradient(180deg, rgba(20,20,20,.85), rgba(14,14,14,.85));
+  border: 1px solid rgba(255,255,255,.10);
+  padding: 26px 24px;
+  box-shadow: 0 24px 70px rgba(0,0,0,.55);
+}
+
+.infoRow{
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.infoRow + .infoRow{
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.iconBox{
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(202,164,77,.55);
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.35);
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+}
+
+.iconBox svg{
+  width: 19px;
+  height: 19px;
+  fill: rgba(202,164,77, 1);
+}
+
+.infoLabel{
+  margin: 0 0 8px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(202,164,77,.85);
+}
+
+.infoValue{
+  margin: 0 0 7px;
+  color: rgba(245,245,245,.95);
+  font-weight: 650;
+  line-height: 1.25;
+  font-size: 16px;
+}
+
+.infoSub{
+  margin: 0;
+  color: rgba(220,220,220,.68);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* socials line */
+.socials{
+  margin-top: 14px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.socialLink{
+  color: rgba(202,164,77,.92);
+  text-decoration: none;
+  letter-spacing: .10em;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.socialLink:hover{ text-decoration: underline; }
+
+.dot{ opacity: .55; color: rgba(220,220,220,.7); }
+
+/* MAP */
+.mapWrap{
+  background: rgba(14,14,14,.85);
+  border: 1px solid rgba(255,255,255,.10);
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0,0,0,.55);
+}
+
+.map{
+  width: 100%;
+  height: 320px;
+  border: 0;
+  filter: grayscale(1) contrast(1.06) brightness(.82);
+}
+
+/* FORM CARD (REFERENCE’DAGI KATTA PANEL) */
+.form{
+  width: min(780px, 100%);
+  background: linear-gradient(180deg, rgba(20,20,20,.88), rgba(12,12,12,.90));
+  border: 1px solid rgba(255,255,255,.10);
+  padding: 40px 42px 34px;
+  box-shadow: 0 28px 90px rgba(0,0,0,.60);
+}
+
+.formTitle{
+  margin: 0 0 26px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 44px;
+  letter-spacing: .01em;
+  color: rgba(245,245,245,.96);
+}
+
+/* label reference’dagi kabi: kichkina, keng letter spacing */
+.label{
+  display: block;
+  margin: 0 0 18px;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(202,164,77,.78);
+}
+
+.req{ color: rgba(202,164,77,1); }
+
+/* INPUTS */
+.input, .textarea{
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px 16px;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(245,245,245,.92);
+  outline: none;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.input{
+  height: 56px; /* reference’dagi kabi baland */
+}
+
+.textarea{
+  min-height: 170px;
+  resize: vertical;
+}
+
+.input:focus, .textarea:focus{
+  border-color: rgba(202,164,77,.70);
+  box-shadow: 0 0 0 4px rgba(202,164,77,.14);
+}
+
+/* BUTTON reference’dagi kabi uzun va “gold bar” */
+.submit{
+  margin-top: 22px;
+  width: 100%;
+  border: 0;
+  padding: 18px 22px;
+  cursor: pointer;
+  color: rgba(10,10,10,.95);
+  text-transform: uppercase;
+  letter-spacing: .24em;
+  font-size: 12px;
+
+  background: linear-gradient(90deg, rgba(202,164,77,.95), rgba(202,164,77,.74));
+  box-shadow: 0 18px 50px rgba(202,164,77,.10);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.submit:hover{
+  filter: brightness(1.06);
+}
+
+.sendIcon{
+  font-size: 14px;
+}
+
+.status{
+  margin: 14px 0 0;
+  color: rgba(220,220,220,.65);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+/* DESKTOP: reference’dagi nisbat va joylashuv */
+@media (min-width: 980px){
+  .grid{
+    grid-template-columns: 420px 1fr; /* chap ingichka, o‘ng katta */
+    gap: 44px;
+    padding: 0 42px;
+  }
+
+  .map{ height: 340px; }
+}
+
+/* MEDIA container */
+.media{
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b0b0c;
+  aspect-ratio: 4 / 3; /* card media bir xil bo‘lib turadi */
+  box-shadow: 0 18px 40px rgba(0,0,0,.22);
+}
+
+/* Video itself */
+.video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  filter: saturate(1.05) contrast(1.05);
+  transition: transform .55s ease, filter .55s ease;
+}
+
+/* Nice shine overlay */
+.mediaShine{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 320px at 20% 10%, rgba(255,255,255,.14), transparent 55%),
+    linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.30));
+  opacity: .9;
+  transition: opacity .45s ease;
+}
+
+/* Hover effects */
+.card:hover .video{
+  transform: scale(1.08);
+  filter: saturate(1.15) contrast(1.08);
+}
+
+.card:hover .mediaShine{
+  opacity: 1;
+}

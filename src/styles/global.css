@@ -1,0 +1,117 @@
+/* Global base styles */
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+button {
+  font: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1450px;
+  margin: 0 auto;
+}
+
+/* Typography helpers */
+.fontDisplay {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+.fontCormorant {
+  font-family: var(--font-cormorant);
+}
+
+/* Utilities */
+.textGoldGradient {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.goldLine {
+  height: 1px;
+  background: var(--gradient-gold);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 8px);
+  }
+}
+
+.animateFadeUp {
+  animation: fadeUp 0.7s ease-out forwards;
+}
+.animateFadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.opacity0Init {
+  opacity: 0;
+}
+
+/* Simple page padding for non-home routes */
+.pageShell {
+  padding: 120px 0 80px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.muted {
+  color: var(--muted-fg);
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
