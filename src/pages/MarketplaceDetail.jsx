@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import SimplePage from "./SimplePage";
 import styles from "./MarketplaceDetail.module.css";
+import { useTranslation } from "react-i18next";
 
 import wb from "../assets/MatketPlace/wb.png";
 import yandex from "../assets/MatketPlace/yandexmarket.png";
@@ -15,64 +16,65 @@ import earrings from "@/assets/product-earrings.jpg";
 const marketplaces = {
   wildberries: {
     name: "Wildberries",
-    subtitle: "Wildberries’dagi AURUM rasmiy do‘koni",
+    subtitleKey: "marketplaceDetail.platforms.wildberries.subtitle",
     accent: "magenta",
     logo: wb,
     products: [
-      { img: ring, title: "Naqshli uzuk" },
-      { img: necklace, title: "Kulonli marjon" },
-      { img: bracelet, title: "Klassik bilaguzuk" },
-      { img: earrings, title: "Sirg‘alar to‘plami" },
+      { img: ring, titleKey: "marketplaceDetail.products.ornateRing" },
+      { img: necklace, titleKey: "marketplaceDetail.products.pendantNecklace" },
+      { img: bracelet, titleKey: "marketplaceDetail.products.classicBracelet" },
+      { img: earrings, titleKey: "marketplaceDetail.products.earringsSet" },
     ],
   },
   "yandex-market": {
     name: "Yandex Market",
-    subtitle: "Yandex Market’da sertifikatlangan sotuvchi kafolati",
+    subtitleKey: "marketplaceDetail.platforms.yandex.subtitle",
     accent: "gold",
     logo: yandex,
     products: [
-      { img: necklace, title: "Tomchi kulon" },
-      { img: ring, title: "Filigran uzuk" },
-      { img: bracelet, title: "Toshli bilaguzuk" },
+      { img: necklace, titleKey: "marketplaceDetail.products.teardropPendant" },
+      { img: ring, titleKey: "marketplaceDetail.products.filigreeRing" },
+      { img: bracelet, titleKey: "marketplaceDetail.products.stoneBracelet" },
     ],
   },
   ozon: {
     name: "Ozon",
-    subtitle: "Ozon’da tezkor buyurtma va ishonchli yetkazib berish",
+    subtitleKey: "marketplaceDetail.platforms.ozon.subtitle",
     accent: "gold",
     logo: ozon,
     products: [
-      { img: ring, title: "Signature uzuk" },
-      { img: bracelet, title: "Burama bilaguzuk" },
-      { img: earrings, title: "Aurum sirg‘alari" },
+      { img: ring, titleKey: "marketplaceDetail.products.signatureRing" },
+      { img: bracelet, titleKey: "marketplaceDetail.products.twistedBracelet" },
+      { img: earrings, titleKey: "marketplaceDetail.products.aurumEarrings" },
     ],
   },
   "uzum-market": {
     name: "Uzum Market",
-    subtitle: "Qulay to‘lovlar va tezkor buyurtma jarayoni",
+    subtitleKey: "marketplaceDetail.platforms.uzum.subtitle",
     accent: "magenta",
     logo: uzum,
     products: [
-      { img: necklace, title: "Oltin marjon" },
-      { img: ring, title: "Minimal uzuk" },
-      { img: bracelet, title: "Kundalik bilaguzuk" },
+      { img: necklace, titleKey: "marketplaceDetail.products.goldNecklace" },
+      { img: ring, titleKey: "marketplaceDetail.products.minimalRing" },
+      { img: bracelet, titleKey: "marketplaceDetail.products.dailyBracelet" },
     ],
   },
 };
 
 export default function MarketplaceDetail() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const data = marketplaces[id];
 
   if (!data) {
     return (
-      <SimplePage title="Marketpleys" subtitle="Topilmadi">
+      <SimplePage title={t("marketplaceDetail.pageTitle")} subtitle={t("marketplaceDetail.notFoundSub")}>
         <div className={styles.notFound}>
           <p>
-            Bu marketpleys topilmadi: <b>{id}</b>
+            {t("marketplaceDetail.notFoundText")} <b>{id}</b>
           </p>
           <Link to="/marketplace" className={styles.back}>
-            ← Marketpleyslar ro‘yxatiga qaytish
+            ← {t("marketplaceDetail.backToList")}
           </Link>
         </div>
       </SimplePage>
@@ -83,7 +85,7 @@ export default function MarketplaceDetail() {
     <SimplePage title=" " subtitle=" ">
       <div className={styles.wrap}>
         <Link to="/marketplace" className={styles.backTop}>
-          ← Marketpleyslar ro‘yxatiga qaytish
+          ← {t("marketplaceDetail.backToList")}
         </Link>
 
         <header className={styles.head}>
@@ -93,21 +95,21 @@ export default function MarketplaceDetail() {
 
           <div>
             <h1 className={`fontDisplay ${styles.h1}`}>{data.name}</h1>
-            <p className={styles.sub}>{data.subtitle}</p>
+            <p className={styles.sub}>{t(data.subtitleKey)}</p>
           </div>
         </header>
 
         <div className={styles.kline} />
 
         <p className={styles.count}>
-          {data.products.length} TA MAHSULOT MAVJUD
+          {t("marketplaceDetail.count", { count: data.products.length })}
         </p>
 
         <div className={styles.grid}>
           {data.products.map((p, idx) => (
             <article key={idx} className={styles.pcard}>
               <div className={styles.media}>
-                <img className={styles.pimg} src={p.img} alt={p.title} />
+                <img className={styles.pimg} src={p.img} alt={t(p.titleKey)} />
 
                 <div className={styles.overlay}>
                   <a
@@ -116,15 +118,15 @@ export default function MarketplaceDetail() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {data.name.toUpperCase()} DA OCHISH{" "}
+                    {t("marketplaceDetail.openOn", { name: data.name.toUpperCase() })}{" "}
                     <span className={styles.ext}>↗</span>
                   </a>
                 </div>
               </div>
 
               <div className={styles.meta}>
-                <div className={styles.cat}>{p.cat || "ZARGARLIK"}</div>
-                <h3 className={`fontDisplay ${styles.ptitle}`}>{p.title}</h3>
+                <div className={styles.cat}>{p.cat ? p.cat : t("marketplaceDetail.defaultCat")}</div>
+                <h3 className={`fontDisplay ${styles.ptitle}`}>{t(p.titleKey)}</h3>
               </div>
             </article>
           ))}

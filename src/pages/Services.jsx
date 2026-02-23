@@ -1,5 +1,6 @@
 import SimplePage from "./SimplePage";
 import styles from "./Services.module.css";
+import { useTranslation } from "react-i18next";
 
 import craftVideo from "../assets/Video/IMG_2916.mp4";
 
@@ -9,43 +10,42 @@ const services = [
     src: craftVideo,
     poster: "",
     icon: "diamond",
-    title: "Maxsus Zargarlik Dizayni",
-    desc:
-      "Usta bilan bevosita ishlang va o‘zingizga xos, yagona buyumni yarating. Dastlabki chizmadan tortib yakuniy jiloga qadar har bir detal sizning tasavvuringiz asosida tayyorlanadi.",
-    bullets: [
-      "Shaxsiy konsultatsiya",
-      "Eskiz va 3D vizualizatsiya",
-      "100% noyob yaratilish",
-      "Haqiqiylik sertifikati",
+    titleKey: "servicesPage.items.customDesign.title",
+    descKey: "servicesPage.items.customDesign.desc",
+    bulletsKeys: [
+      "servicesPage.items.customDesign.bullets.consultation",
+      "servicesPage.items.customDesign.bullets.sketch3d",
+      "servicesPage.items.customDesign.bullets.unique",
+      "servicesPage.items.customDesign.bullets.certificate"
     ],
   },
 ];
 
 export default function Services() {
+  const { t } = useTranslation();
+
   return (
     <SimplePage
-      title="Xizmatlar"
-      subtitle="Oltin sabrli. Biz esa undan ham sabrlimiz. Maxsus buyurtmalar va nozik restavratsiya ustaxona darajasidagi aniqlik bilan."
+      title={t("servicesPage.pageTitle")}
+      subtitle={t("servicesPage.pageSubtitle")}
     >
       <header className={styles.head}>
         <div className={styles.kickerRow}>
           <span className={styles.kickerLine} />
-          <span className={styles.kicker}>BIZ TAKLIF ETAMIZ</span>
+          <span className={styles.kicker}>{t("servicesPage.kicker")}</span>
         </div>
 
         <h2 className={styles.h2}>
-          <span className={styles.h2Light}>Bizning</span>{" "}
-          <span className={styles.h2Gold}>Xizmatlarimiz</span>
+          <span className={styles.h2Light}>{t("servicesPage.h2a")}</span>{" "}
+          <span className={styles.h2Gold}>{t("servicesPage.h2b")}</span>
         </h2>
 
-        <p className={styles.lead}>
-          Maxsus buyurtmalardan tortib nozik restavratsiyagacha , har bir detal mukammallik bilan bajariladi.
-        </p>
+        <p className={styles.lead}>{t("servicesPage.lead")}</p>
       </header>
 
       <div className={styles.list}>
         {services.map((s) => (
-          <section key={s.title} className={styles.splitCard}>
+          <section key={s.titleKey} className={styles.splitCard}>
             <div className={styles.media}>
               {s.mediaType === "video" ? (
                 <video
@@ -57,7 +57,7 @@ export default function Services() {
                   controls
                 />
               ) : (
-                <img className={styles.image} src={s.src} alt={s.title} />
+                <img className={styles.image} src={s.src} alt={t(s.titleKey)} />
               )}
               <div className={styles.mediaShade} />
             </div>
@@ -71,14 +71,14 @@ export default function Services() {
                 />
               </div>
 
-              <h3 className={`fontDisplay ${styles.title}`}>{s.title}</h3>
+              <h3 className={`fontDisplay ${styles.title}`}>{t(s.titleKey)}</h3>
 
-              <p className={styles.desc}>{s.desc}</p>
+              <p className={styles.desc}>{t(s.descKey)}</p>
 
               <ul className={styles.bullets}>
-                {s.bullets?.map((b) => (
-                  <li key={b} className={styles.bullet}>
-                    {b}
+                {s.bulletsKeys?.map((k) => (
+                  <li key={k} className={styles.bullet}>
+                    {t(k)}
                   </li>
                 ))}
               </ul>

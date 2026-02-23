@@ -1,11 +1,13 @@
 import { useState } from "react";
 import SimplePage from "./SimplePage";
 import styles from "./Contact.module.css";
+import { useTranslation } from "react-i18next";
 
 const contact = {
-  brand: "ЯТТ НАРЗИЕВ ГУЛОМЖОН",
-  phone: "93-476-62-00",
-  address: "БУХОРО ТУМАН БУЮК ИПАК ЙУЛИ ЁКАСИ ГАЛАОСИЁ ДЕХКОН БОЗОРИ РУПАРАСИ",
+  brand: "YTT Narziyev G‘ulomjon",
+  phone: "+998 93 476 62 00",
+  address:
+    "Buxoro tumani, Buyuk Ipak Yo‘li yoqasi, Galaosiyo dehqon bozori ro‘parasi",
   hoursPrimary: "Dushanba – Shanba: 10:00 – 19:00",
   hoursSecondary: "Yakshanba: kelishuv asosida",
   telegram: "https://t.me/luxury_jewellry",
@@ -38,34 +40,58 @@ function IconClock() {
 }
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [status, setStatus] = useState("");
 
   function onSubmit(e) {
     e.preventDefault();
-    setStatus(
-      "Xabar yuborildi (demo). Bu joyni backend yoki email xizmatiga ulang."
-    );
+
+    const form = e.currentTarget;
+
+    const name = form.elements.name.value.trim();
+    const phone = form.elements.phone.value.trim();
+    const message = form.elements.message.value.trim();
+
+    const to = "ogabekomonov79@gmail.com";
+    const subject = t("contactPage.emailSubject", { name, phone });
+
+    const body = t("contactPage.emailBody", {
+      name,
+      phone,
+      message,
+      date: new Date().toLocaleString(),
+    });
+
+    const gmailLink =
+      `https://mail.google.com/mail/?view=cm&fs=1` +
+      `&to=${encodeURIComponent(to)}` +
+      `&su=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
+
+    window.open(gmailLink, "_blank", "noopener,noreferrer");
+
+    setStatus(t("contactPage.statusOpened"));
+
+    form.reset();
   }
 
   const mapSrc =
-    "https://www.google.com/maps?q=" +
+    "https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5543.386504659465!2d64.441817!3d39.85585!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMznCsDUxJzIxLjEiTiA2NMKwMjYnMzAuNSJF!5e1!3m2!1sru!2s!4v1771885719268!5m2!1sru!2s"+
     encodeURIComponent(contact.address) +
     "&output=embed";
 
   return (
-    <SimplePage title="Aloqa" subtitle="">
+    <SimplePage title={t("contactPage.pageTitle")} subtitle="">
       <section className={styles.section}>
         <header className={styles.hero}>
-          <p className={styles.kicker}>BOG‘LANISH</p>
+          <p className={styles.kicker}>{t("contactPage.kicker")}</p>
 
           <h1 className={styles.h1}>
-            Biz bilan <span className={styles.h1Accent}>Aloqa</span>
+            {t("contactPage.h1a")}{" "}
+            <span className={styles.h1Accent}>{t("contactPage.h1b")}</span>
           </h1>
 
-          <p className={styles.lead}>
-            Maxsus buyurtma berishni xohlaysizmi yoki savolingiz bormi?
-            Sizdan xabar kutamiz.
-          </p>
+          <p className={styles.lead}>{t("contactPage.lead")}</p>
         </header>
 
         <div className={styles.shell}>
@@ -78,8 +104,10 @@ export default function Contact() {
                     <IconPhone />
                   </div>
                   <div className={styles.infoText}>
-                    <p className={styles.infoLabel}>TELEFON</p>
-                    <p className={styles.infoValue}>{contact.phone}</p>
+                    <p className={styles.infoLabel}>{t("contactPage.labels.phone")}</p>
+                    <p className={styles.infoValue}>
+                      <a href="tel:+998934766200">{contact.phone}</a>
+                    </p>
                     <p className={styles.infoSub}>{contact.hoursPrimary}</p>
                   </div>
                 </div>
@@ -89,9 +117,11 @@ export default function Contact() {
                     <IconPin />
                   </div>
                   <div className={styles.infoText}>
-                    <p className={styles.infoLabel}>MANZIL</p>
+                    <p className={styles.infoLabel}>{t("contactPage.labels.address")}</p>
                     <p className={styles.infoValue}>{contact.address}</p>
-                    <p className={styles.infoSub}>{contact.email}</p>
+                    <p className={styles.infoSub}>
+                      <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                    </p>
                   </div>
                 </div>
 
@@ -100,7 +130,7 @@ export default function Contact() {
                     <IconClock />
                   </div>
                   <div className={styles.infoText}>
-                    <p className={styles.infoLabel}>ISH VAQTI</p>
+                    <p className={styles.infoLabel}>{t("contactPage.labels.hours")}</p>
                     <p className={styles.infoValue}>{contact.hoursPrimary}</p>
                     <p className={styles.infoSub}>{contact.hoursSecondary}</p>
                   </div>
@@ -113,7 +143,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Telegram
+                    {t("contactPage.social.telegram")}
                   </a>
                   <span className={styles.dot}> • </span>
                   <a
@@ -122,7 +152,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Instagram
+                    {t("contactPage.social.instagram")}
                   </a>
                 </div>
               </div>
@@ -133,7 +163,7 @@ export default function Contact() {
                   src={mapSrc}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Xarita"
+                  title={t("contactPage.mapTitle")}
                 />
               </div>
             </div>
@@ -141,41 +171,61 @@ export default function Contact() {
             {/* RIGHT */}
             <div className={styles.right}>
               <form className={styles.form} onSubmit={onSubmit}>
-                <h2 className={styles.formTitle}>Xabar yuborish</h2>
+                <h2 className={styles.formTitle}>{t("contactPage.form.title")}</h2>
 
                 <label className={styles.label}>
-                  ISMINGIZ <span className={styles.req}>*</span>
+                  {t("contactPage.form.nameLabel")}
                   <input
                     className={styles.input}
+                    name="name"
                     required
-                    placeholder="Ismingizni kiriting"
+                    placeholder={t("contactPage.form.namePh")}
                   />
                 </label>
 
                 <label className={styles.label}>
-                  TELEFON RAQAM <span className={styles.req}>*</span>
+                  {t("contactPage.form.phoneLabel")}
                   <input
                     className={styles.input}
+                    type="tel"
+                    name="phone"
                     required
-                    placeholder={contact.phone}
+                    inputMode="numeric"
+                    pattern="^\+998\d{9}$"
+                    maxLength={13}
+                    placeholder={t("contactPage.form.phonePh")}
+                    title={t("contactPage.form.phoneHint")}
+                    onInput={(e) => {
+                      e.target.value = e.target.value.replace(/[^\d+]/g, "");
+
+                      if (!e.target.value.startsWith("+")) {
+                        e.target.value =
+                          "+" + e.target.value.replace(/\+/g, "");
+                      }
+
+                      if (e.target.value.length > 13) {
+                        e.target.value = e.target.value.slice(0, 13);
+                      }
+                    }}
                   />
                 </label>
 
                 <label className={styles.label}>
-                  XABAR <span className={styles.req}>*</span>
+                  {t("contactPage.form.msgLabel")}
                   <textarea
                     className={styles.textarea}
+                    name="message"
                     required
-                    placeholder="Buyurtma yoki savolingizni yozing..."
+                    placeholder={t("contactPage.form.msgPh")}
                     rows={7}
                   />
                 </label>
 
                 <button className={styles.submit} type="submit">
-                  XABAR YUBORISH
+                  {t("contactPage.form.submit")}
                 </button>
 
-                {status ? <p className={styles.status}>{status}</p> : null}
+                {status && <p className={styles.status}>{status}</p>}
               </form>
             </div>
           </div>

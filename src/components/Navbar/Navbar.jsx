@@ -2,36 +2,39 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import styles from './Navbar.module.css'
+import logo from "../../assets/MatketPlace/logo.png"
+import { useTranslation } from "react-i18next"
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/products', label: 'Products' },
-  { href: '/services', label: 'Services' },
-  { href: '/marketplace', label: 'Marketplace' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', key: 'nav.home' },
+  { href: '/products', key: 'nav.products' },
+  { href: '/services', key: 'nav.services' },
+  { href: '/marketplace', key: 'nav.marketplace' },
+  { href: '/contact', key: 'nav.contact' },
 ]
 
-// Keylar: siz keyin i18n ulashga qulay bo‘lishi uchun
 const languages = [
   { code: 'en', label: 'EN' },
   { code: 'uz', label: 'UZ' },
   { code: 'ru', label: 'RU' },
+  { code: 'tr', label: 'TR' },
+  { code: 'fr', label: 'FR' },
 ]
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation()
+
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  // Language select
   const [langOpen, setLangOpen] = useState(false)
-  const [lang, setLang] = useState('en')
 
   const location = useLocation()
 
-  const activeLabel = useMemo(
-    () => languages.find((l) => l.code === lang)?.label ?? 'EN',
-    [lang]
-  )
+  // activeLabel endi i18n.language dan olinadi
+  const activeLabel = useMemo(() => {
+    return languages.find((l) => l.code === i18n.language)?.label ?? 'EN'
+  }, [i18n.language])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -47,7 +50,6 @@ export default function Navbar() {
 
   useEffect(() => {
     const onClickOutside = (e) => {
-      // dropdown tashqarisiga bosilsa yopiladi
       if (!e.target.closest?.(`.${styles.langWrap}`)) setLangOpen(false)
     }
     window.addEventListener('click', onClickOutside)
@@ -55,20 +57,17 @@ export default function Navbar() {
   }, [])
 
   const onSelectLang = (code) => {
-    setLang(code)
+    i18n.changeLanguage(code)
+    localStorage.setItem('lang', code)
     setLangOpen(false)
-    // Keyin i18n qo‘shilganda shu joyda:
-    // i18n.changeLanguage(code)
-    // yoki localStorage.setItem('lang', code)
   }
 
   return (
     <>
       <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`}>
         <div className={`container ${styles.inner}`}>
-          <Link to="/" className={styles.logo} aria-label="AURUM">
-            <span className={`fontDisplay ${styles.logoTop} textGoldGradient`}>AURUM</span>
-            <span className={styles.logoBottom}>Master Gold Works</span>
+          <Link to="/" className={styles.logo} aria-label={t('nav.brand')}>
+              <img src={logo} alt="" style={{width: "5%"}} />
           </Link>
 
           <div className={styles.rightGroup}>
@@ -81,7 +80,7 @@ export default function Navbar() {
                     to={link.href}
                     className={`${styles.link} ${active ? styles.linkActive : ''}`}
                   >
-                    {link.label}
+                    {t(link.key)}
                     <span className={`${styles.underline} ${active ? styles.underlineActive : ''}`} />
                   </Link>
                 )
@@ -99,7 +98,7 @@ export default function Navbar() {
                 }}
                 aria-haspopup="listbox"
                 aria-expanded={langOpen}
-                aria-label="Language"
+                aria-label={t('nav.language')}
               >
                 <span className={styles.langPill}>
                   <span className={styles.langLabel}>{activeLabel}</span>
@@ -109,9 +108,9 @@ export default function Navbar() {
               </button>
 
               {langOpen && (
-                <div className={styles.langMenu} role="listbox" aria-label="Languages">
+                <div className={styles.langMenu} role="listbox" aria-label={t('nav.languages')}>
                   {languages.map((l) => {
-                    const active = l.code === lang
+                    const active = l.code === i18n.language
                     return (
                       <button
                         key={l.code}
@@ -134,7 +133,7 @@ export default function Navbar() {
             <button
               className={styles.mobileBtn}
               onClick={() => setMobileOpen((v) => !v)}
-              aria-label="Toggle menu"
+              aria-label={t('nav.toggleMenu')}
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -147,7 +146,7 @@ export default function Navbar() {
           {/* Mobile language */}
           <div className={styles.mobileLangRow}>
             {languages.map((l) => {
-              const active = l.code === lang
+              const active = l.code === i18n.language
               return (
                 <button
                   key={l.code}
@@ -168,7 +167,7 @@ export default function Navbar() {
               className={`fontDisplay ${styles.mobileLink} animateFadeUp`}
               style={{ animationDelay: `${i * 0.08}s`, opacity: 0, animationFillMode: 'forwards' }}
             >
-              {link.label}
+              {t(link.key)}
             </Link>
           ))}
         </div>

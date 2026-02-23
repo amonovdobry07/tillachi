@@ -1,25 +1,27 @@
 import craftsmanImg from '@/assets/craftsman.jpg'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { useTranslation } from "react-i18next"
 import styles from './About.module.css'
 
 export default function About() {
   const ref = useScrollReveal()
+  const { t } = useTranslation()
 
   return (
     <section id="about" className={styles.about} ref={ref}>
       <div className="container">
         <div className={`reveal opacity0Init ${styles.labelRow}`}>
           <div className={styles.smallLine} />
-          <span className={styles.label}>Biz haqimizda</span>
+          <span className={styles.label}>{t("about.label")}</span>
         </div>
 
         <div className={styles.grid}>
-          {/* IMAGE SECTION */}
+          {/* IMAGE */}
           <div className={`reveal opacity0Init ${styles.imageWrap}`}>
             <div className={styles.imageFrame}>
               <img
                 src={craftsmanImg}
-                alt="Zargar ustasi ish jarayonida"
+                alt={t("about.imageAlt")}
                 className={styles.image}
               />
               <div className={styles.frameBorder} aria-hidden="true" />
@@ -28,47 +30,47 @@ export default function About() {
 
             <div className={styles.badge}>
               <p className={`fontDisplay ${styles.badgeValue}`}>2011+</p>
-              <p className={styles.badgeLabel}>Yildan tajriba</p>
+              <p className={styles.badgeLabel}>{t("about.badge")}</p>
             </div>
           </div>
 
-          {/* TEXT SECTION */}
+          {/* TEXT */}
           <div className={`reveal opacity0Init ${styles.text}`}>
             <h2 className={`fontDisplay ${styles.heading}`}>
-              Sof oltinda <span className={`textGoldGradient ${styles.italic}`}>orzularni yaratamiz</span>
+              {t("about.title1")}{" "}
+              <span className={`textGoldGradient ${styles.italic}`}>
+                {t("about.title2")}
+              </span>
             </h2>
 
             <div className={`goldLine ${styles.bigLine}`} />
 
             <p className={`fontCormorant ${styles.pLead}`}>
-              YATT Narziyev Gulomjon 2011 yildan buyon zargarlik sohasida faoliyat yuritib kelmoqda.
-              Har bir buyum ko‘p yillik tajriba va nozik did asosida yaratiladi.
+              {t("about.lead")}
             </p>
 
             <p className={styles.p}>
-              Korxonamiz 2021 yil 5 maydan boshlab rasmiy faoliyat yuritadi.
-              Biz qimmatbaho metallarga ishlov berish va turli xil zargarlik buyumlarini tayyorlash bilan shug‘ullanamiz.
+              {t("about.p1")}
             </p>
 
             <p className={styles.p}>
-              Buyurtma asosida uzuklar, sirg‘alar, taqinchoqlar va maxsus dizayndagi
-              zargarlik mahsulotlari tayyorlanadi. Har bir mahsulot sifat, nafislik va ishonchlilik timsolidir.
+              {t("about.p2")}
             </p>
 
             <div className={styles.stats}>
               <div>
                 <p className={`fontDisplay ${styles.statValue}`}>2011+</p>
-                <p className={styles.statLabel}>Tajriba yillari</p>
+                <p className={styles.statLabel}>{t("about.stat1")}</p>
               </div>
 
               <div>
                 <p className={`fontDisplay ${styles.statValue}`}>2021</p>
-                <p className={styles.statLabel}>Rasmiy faoliyat</p>
+                <p className={styles.statLabel}>{t("about.stat2")}</p>
               </div>
 
               <div>
                 <p className={`fontDisplay ${styles.statValue}`}>100%</p>
-                <p className={styles.statLabel}>Sifat kafolati</p>
+                <p className={styles.statLabel}>{t("about.stat3")}</p>
               </div>
             </div>
           </div>

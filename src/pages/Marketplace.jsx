@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import SimplePage from "./SimplePage";
 import styles from "./Marketplace.module.css";
+import { useTranslation } from "react-i18next";
+
 import ozon from "../assets/MatketPlace/ozon.png";
 import wb from "../assets/MatketPlace/wb.png";
 import uzum from "../assets/MatketPlace/uzummarket.png";
@@ -10,63 +12,55 @@ const platforms = [
   {
     id: "wildberries",
     name: "Wildberries",
-    desc:
-      "Rossiyaning eng yirik onlayn marketplace’i. Eksklyuziv zargarlik buyumlari uchun tasdiqlangan do‘konimizni ko‘ring.",
-    tag: "48 ta mahsulot mavjud",
-    initials: "WB",
+    descKey: "marketplacePage.platforms.wildberries.desc",
+    tagKey: "marketplacePage.platforms.wildberries.tag",
     accent: "magenta",
     img: wb,
   },
   {
     id: "yandex-market",
     name: "Yandex Market",
-    desc:
-      "Yandex Market’da AURUMning asl mahsulotlarini sertifikatlangan sotuvchi kafolati bilan toping.",
-    tag: "32 ta mahsulot mavjud",
-    initials: "YM",
+    descKey: "marketplacePage.platforms.yandex.desc",
+    tagKey: "marketplacePage.platforms.yandex.tag",
     accent: "gold",
     img: yandex,
   },
   {
     id: "ozon",
     name: "Ozon",
-    desc:
-      "Tezkor buyurtma va ishonchli yetkazib berish. Tayyor kolleksiyalarni qulay xarid qiling.",
-    tag: "21 ta mahsulot mavjud",
-    initials: "OZ",
+    descKey: "marketplacePage.platforms.ozon.desc",
+    tagKey: "marketplacePage.platforms.ozon.tag",
     accent: "gold",
     img: ozon,
   },
   {
     id: "uzum-market",
     name: "Uzum Market",
-    desc:
-      "Mahalliy marketplace: qulay to‘lovlar va tezkor buyurtma jarayoni bilan xarid qiling.",
-    tag: "18 ta mahsulot mavjud",
-    initials: "UM",
+    descKey: "marketplacePage.platforms.uzum.desc",
+    tagKey: "marketplacePage.platforms.uzum.tag",
     accent: "magenta",
     img: uzum,
   },
 ];
 
 export default function Marketplace() {
+  const { t } = useTranslation();
+
   return (
-    <SimplePage title="Marketpleys" subtitle=" ">
+    <SimplePage title={t("marketplacePage.pageTitle")} subtitle=" ">
       <section className={styles.wrap}>
         <header className={styles.hero}>
           <div className={styles.kicker}>
             <span className={styles.kline} />
-            <span className={styles.ktext}>QAYERDAN SOTIB OLISH</span>
+            <span className={styles.ktext}>{t("marketplacePage.kicker")}</span>
           </div>
 
           <h1 className={`fontDisplay ${styles.h1}`}>
-            Marketpleyslarda <span className={styles.h1Accent}>mavjud</span>
+            {t("marketplacePage.h1a")}{" "}
+            <span className={styles.h1Accent}>{t("marketplacePage.h1b")}</span>
           </h1>
 
-          <p className={styles.lead}>
-            Ishonchli platformalarda saralangan kolleksiyalarimizni xarid qiling:
-            tasdiqlangan asl mahsulot va xavfsiz yetkazib berish.
-          </p>
+          <p className={styles.lead}>{t("marketplacePage.lead")}</p>
         </header>
 
         <div className={styles.grid}>
@@ -81,12 +75,12 @@ export default function Marketplace() {
               </div>
 
               <h3 className={`fontDisplay ${styles.name}`}>{p.name}</h3>
-              <p className={styles.desc}>{p.desc}</p>
+              <p className={styles.desc}>{t(p.descKey)}</p>
 
               <div className={styles.bottom}>
-                <span className={styles.tag}>{p.tag}</span>
+                <span className={styles.tag}>{t(p.tagKey)}</span>
                 <span className={styles.browse}>
-                  KO‘RISH <span className={styles.arrow}>→</span>
+                  {t("marketplacePage.browse")} <span className={styles.arrow}>→</span>
                 </span>
               </div>
             </Link>
